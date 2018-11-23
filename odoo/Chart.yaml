@@ -1,0 +1,17 @@
+name: odoo
+version: 1.0.0
+appVersion: 12.0
+description: A suite of web based open source business apps.
+home: https://www.odoo.com/
+keywords:
+- odoo
+- crm
+- www
+- http
+- web
+sources:
+- https://github.com/nexiles/helm
+maintainers:
+- name: Stefan Eletzhofer
+  email: se@nexiles.de
+engine: gotpl
