@@ -4,6 +4,11 @@
 
 Odoo Apps can be used as stand-alone applications, but they also integrate seamlessly so you get a full-featured Open Source ERP when you install several Apps.
 
+**Note:** This chart is a modified copy of the stable/odoo chart from bitnami.
+    We want to use the "official" odoo docker container -- unfortunately, bitnami
+    chose to choose a different web data directory, which is not overwritable.
+    Hence the copy.
+
 ## TL;DR;
 
 ```console
@@ -12,7 +17,7 @@ $ helm install stable/odoo
 
 ## Introduction
 
-This chart bootstraps a [Odoo](https://github.com/bitnami/bitnami-docker-odoo) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+This chart bootstraps a [Odoo](https://github.com/nexiles/helm/odoo) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
 Bitnami charts can be used with [Kubeapps](https://kubeapps.com/) for deployment and management of Helm Charts in clusters.
 
@@ -51,7 +56,7 @@ The following table lists the configurable parameters of the Odoo chart and thei
 |---------------------------------------|-------------------------------------------------------------|------------------------------------------------|
 | `global.imageRegistry`                | Global Docker image registry                                | `nil`                                          |
 | `image.registry`                      | Odoo image registry                                         | `docker.io`                                    |
-| `image.repository`                    | Odoo Image name                                             | `bitnami/odoo`                                 |
+| `image.repository`                    | Odoo Image name                                             | `library/odoo`                                 |
 | `image.tag`                           | Odoo Image tag                                              | `{VERSION}`                                    |
 | `image.pullPolicy`                    | Image pull policy                                           | `Always`                                       |
 | `image.pullSecrets`                   | Specify image pull secrets                                  | `nil`                                          |
@@ -100,7 +105,9 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | `readinessProbe.failureThreshold`     | Minimum consecutive failures to be considered failed        | 6                                              |
 | `readinessProbe.successThreshold`     | Minimum consecutive successes to be considered successful   | 1                                              |
 
-The above parameters map to the env variables defined in [bitnami/odoo](http://github.com/bitnami/bitnami-docker-odoo). For more information please refer to the [bitnami/odoo](http://github.com/bitnami/bitnami-docker-odoo) image documentation.
+The above parameters map to the env variables defined in
+[nexiles/odoo](http://github.com/nexiles/helm/odoo). For more information
+please refer to the [odoo](https://hub.docker.com/_/odoo/) image documentation.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
@@ -122,19 +129,9 @@ $ helm install --name my-release -f values.yaml stable/odoo
 
 ## Persistence
 
-The [Bitnami Odoo](https://github.com/bitnami/bitnami-docker-odoo) image stores the Odoo data and configurations at the `/bitnami/odoo` path of the container.
+The [odoo](https://hub.docker.com/_/odoo/) image stores
+the Odoo data and configurations at the `/var/lib/odoo` path of the container.
 
 Persistent Volume Claims are used to keep the data across deployments. This is known to work in GCE, AWS, and minikube.
 See the [Configuration](#configuration) section to configure the PVC or to disable persistence.
 
-## Upgrading
-
-### To 3.0.0
-
-Backwards compatibility is not guaranteed unless you modify the labels used on the chart's deployments.
-Use the workaround below to upgrade from versions previous to 3.0.0. The following example assumes that the release name is odoo:
-
-```console
-$ kubectl patch deployment odoo-odoo --type=json -p='[{"op": "remove", "path": "/spec/selector/matchLabels/chart"}]'
-$ kubectl patch deployment odoo-postgresql --type=json -p='[{"op": "remove", "path": "/spec/selector/matchLabels/chart"}]'
-```

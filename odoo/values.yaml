@@ -5,12 +5,12 @@
 #   imageRegistry:
 
 ## Bitnami Odoo image version
-## ref: https://hub.docker.com/r/bitnami/odoo/tags/
+## ref: https://hub.docker.com/r/library/odoo/tags/
 ##
 image:
   registry: docker.io
-  repository: bitnami/odoo
-  tag: 11.0.20181115
+  repository: library/odoo
+  tag: 12.0
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -24,23 +24,23 @@ image:
   #   - myRegistrKeySecretName
 
 ## User of the application
-## ref: https://github.com/bitnami/bitnami-docker-odoo#configuration
+## ref: https://github.com/nexiles/helm/tree/develop/odoo#configuration
 ##
 odooUsername: user@example.com
 
 ## Admin email
-## ref: https://github.com/bitnami/bitnami-docker-odoo#configuration
+## ref: https://github.com/nexiles/helm/tree/develop/odoo#configuration
 ##
 odooEmail: user@example.com
 
 ## Application password
 ## Defaults to a random 10-character alphanumeric string if not set
-## ref: https://github.com/bitnami/bitnami-docker-odoo#configuration
+## ref: https://github.com/nexiles/helm/tree/develop/odoo#configuration
 ##
 # odooPassword:
 
 ## SMTP mail delivery configuration
-## ref: https://github.com/bitnami/bitnami-docker-odoo/#smtp-configuration
+## ref: https://github.com/nexiles/helm/tree/develop/odoo#smtp-configuration
 # smtpHost:
 # smtpPort:
 # smtpUser:
@@ -56,7 +56,8 @@ postgresql:
   ## PostgreSQL password
   ## ref: https://hub.docker.com/_/postgres/
   ##
-  # postgresqlPassword:
+  postgresqlUsername: odoo
+  postgresqlDatabase: odoo
 
   ## Enable persistence using Persistent Volume Claims
   ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
