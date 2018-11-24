@@ -11,15 +11,15 @@ Odoo Apps can be used as stand-alone applications, but they also integrate seaml
 
 ## TL;DR;
 
+**note:** This chart is not yet available in a public helm repo
+
 ```console
-$ helm install stable/odoo
+$ helm install nexiles/odoo
 ```
 
 ## Introduction
 
 This chart bootstraps a [Odoo](https://github.com/nexiles/helm/odoo) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
-
-Bitnami charts can be used with [Kubeapps](https://kubeapps.com/) for deployment and management of Helm Charts in clusters.
 
 ## Prerequisites
 
@@ -69,7 +69,7 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | `smtpPassword`                        | SMTP password                                               | `nil`                                          |
 | `smtpProtocol`                        | SMTP protocol [`ssl`, `tls`]                                | `nil`                                          |
 | `service.type`                        | Kubernetes Service type                                     | `LoadBalancer`                                 |
-| `service.port`                        | Service HTTP port                                           | `80`                                          |
+| `service.port`                        | Service HTTP port                                           | `80`                                           |
 | `service.loadBalancer`                | Kubernetes LoadBalancerIP to request                        | `nil`                                          |
 | `service.externalTrafficPolicy`       | Enable client source IP preservation                        | `Cluster`                                      |
 | `service.nodePort`                    | Kubernetes http node port                                   | `""`                                           |
