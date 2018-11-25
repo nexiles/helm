@@ -1,7 +1,7 @@
 GCS_HELM_BUCKET=gs://$(shell gcloud info --format='value(config.project)')-helm-repo
 
 
-all: helm-odoo
+all: package push
 
 package:  package-odoo
 

@@ -19,15 +19,15 @@ spec:
         chart: {{ template "odoo.chart" . }}
         release: {{ .Release.Name | quote }}
     spec:
-      securityContext:
-        runAsUser: 101
-        fsGroup: 101
       {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
       {{- range .Values.image.pullSecrets }}
         - name: {{ . }}
       {{- end}}
       {{- end }}
+      securityContext:
+        runAsUser: 101
+        fsGroup: 101
       containers:
       - name: {{ template "odoo.fullname" . }}
         image: {{ template "odoo.image" . }}
